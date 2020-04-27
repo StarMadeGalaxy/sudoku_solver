@@ -13,6 +13,21 @@ board_integer = [
 ]
 
 
+def check_solvability(board):  # check if the board is correct initially
+    for row in range(len(board)):
+        for col in range(len(board)):
+            if board[row][col] == 0:
+                pass
+            else:
+                number = board[row][col]
+                board[row][col] = 0
+                if not check(number, row, col, board):
+                    return False
+                else:
+                    board[row][col] = number
+    return True
+
+
 def check(number, y, x, board):  # check can we put a specific number on board[y][x]
     if board[y][x] != 0:
         return False
@@ -66,6 +81,10 @@ def find_empty_cell(board):
 
 
 def solve(board):  # solving algorithm
+    if check_solvability(board) == False:
+        print("The board has no solution !")
+        return False
+
     find_empty_spot = find_empty_cell(board)
     if not find_empty_spot:
         print("The board is solved !")
