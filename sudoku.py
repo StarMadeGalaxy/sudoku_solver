@@ -81,7 +81,7 @@ def find_empty_cell(board):
 
 
 def solve(board):  # solving algorithm
-    if check_solvability(board) == False:
+    if not check_solvability(board):
         print("The board has no solution !")
         return False
 
