@@ -1,6 +1,5 @@
 from printer import board_int_to_str, print_board
 
-
 board_integer = [
     [5, 3, 0, 0, 7, 0, 0, 0, 0],
     [6, 0, 0, 1, 9, 5, 0, 0, 0],
@@ -31,20 +30,22 @@ def check(number, y, x, board):  # check can we put a specific number on board[y
             pass
 
     # checking boxes
-    X_box = x // 3    # here we create (y, x) for boxes in the board
-    Y_box = y // 3    # so each box has its own coordinates
+    X_box = x // 3  # here we create (y, x) for boxes in the board
+    Y_box = y // 3  # so each box has its own coordinates
 
     # limits for boxes
-    X_box_low_limit = X_box * 3     # for every box set limits of X and Y of the whole board
+    X_box_low_limit = X_box * 3  # for every box set limits of X and Y of the whole board
     X_box_high_limit = X_box * 3 + 3
 
     Y_box_low_limit = Y_box * 3
     Y_box_high_limit = Y_box * 3 + 3
 
-    for row in range(Y_box_low_limit, Y_box_high_limit + 1):    # +1 due to mechanics of range function
-        for col in range(X_box_low_limit, X_box_high_limit + 1):
-            if board[row][col] != number:
+    for row in range(Y_box_low_limit, Y_box_high_limit):
+        for col in range(X_box_low_limit, X_box_high_limit):
+            if board[row][col] == number:
                 return False
+            else:
+                pass
 
     return True
 
@@ -81,9 +82,9 @@ def solve(board):  # solving algorithm
                 board[y][x] = 0  # we can't use the previous number anymore, so we just backtrack
         else:
             pass
-#
+    #
     return False  # return False 'cause there's was no True before return False
-#     and therefore there is no solution for this case with that number
+    #     and therefore there is no solution for this case with that number
 
 
 solve(board_integer)
